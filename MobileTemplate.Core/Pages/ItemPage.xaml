@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.ItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    Title="{Binding Title}"
+    x:DataType="viewModels:ItemViewModel"
+    x:TypeArguments="viewModels:ItemViewModel">
+
+    <StackLayout
+        Padding="12"
+        Spacing="4"
+        VerticalOptions="FillAndExpand">
+
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Title" />
+        <Label Style="{StaticResource RegularLabelStyle}" Text="{Binding Item.Title}" />
+
+        <Label
+            Margin="4,6,0,0"
+            Style="{StaticResource FormLabelStyle}"
+            Text="Description" />
+        <Label Style="{StaticResource RegularLabelStyle}" Text="{Binding Item.Description}" />
+
+    </StackLayout>
+</views:MvxContentPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    mvx:La.ng="Title Home, FallbackValue=Home"
+    x:TypeArguments="viewModels:HomeViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    NavigationPage.HasNavigationBar="False">
+
+    <views:MvxContentPage.IconImageSource>
+        <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="&#xf2dc;" />
+    </views:MvxContentPage.IconImageSource>
+
+    <StackLayout Padding="0" VerticalOptions="Start">
+
+        <StackLayout Padding="12,12,12,6">
+
+            <StackLayout Orientation="Horizontal">
+
+                <xct:AvatarView
+                    BorderColor="White"
+                    FontSize="Medium"
+                    Size="48"
+                    Text="RB"
+                    TextColor="White"
+                    Color="{StaticResource DarkAccentColor}" />
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="Center">
+                    <Label Text="Hola!" TextColor="{StaticResource BlackColor}" />
+                    <Label Text="Roygar Briceño" TextColor="{StaticResource BlackColor}" />
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+
+        <CollectionView Margin="12,0,12,0" ItemsSource="{Binding Menu}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="12"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        BorderColor="LightGray"
+                        CornerRadius="10"
+                        HasShadow="True">
+                        <StackLayout HeightRequest="100">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="{StaticResource MaterialFontFamily}"
+                                        Glyph="{Binding Icon}"
+                                        Size="64"
+                                        Color="{StaticResource AccentColor}" />
+                                </Image.Source>
+                            </Image>
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource MenuLabelStyle}"
+                                Text="{Binding Text}" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Command}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</views:MvxContentPage>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.SynchronizationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MobileTemplate.Core.Converters"
+    xmlns:models="clr-namespace:MobileTemplate.Core.Models"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    Title="Sincronización"
+    x:TypeArguments="viewModels:SynchronizationViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SynchronizationLoadingConverter x:Key="SynchronizationLoadingConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout
+            Padding="12"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                Margin="0,20,0,0"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="Start">
+
+                <Image>
+                    <Image.Source>
+                        <FontImageSource
+                            FontFamily="{StaticResource MaterialFontFamily}"
+                            Glyph="&#xf162;"
+                            Size="52"
+                            Color="{StaticResource AccentColor}" />
+                    </Image.Source>
+                </Image>
+
+                <Label HorizontalOptions="Center" VerticalOptions="End">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span mvx:La.ng="Text Version, FallbackValue=Version" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Version}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <ProgressBar
+                    IsEnabled="True"
+                    IsVisible="True"
+                    Progress="{Binding Progress, Mode=TwoWay}"
+                    ProgressColor="{StaticResource AccentColor}"
+                    Style="{StaticResource ActivityIndicatorStyle}"
+                    WidthRequest="160" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding ProgressMessage, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+
+            <ScrollView>
+                <StackLayout
+                    Margin="0,12,0,0"
+                    BindableLayout.ItemsSource="{Binding SynchronizationItems}"
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    WidthRequest="300">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:SynchronizationItem">
+
+                            <StackLayout HeightRequest="30" Orientation="Horizontal">
+                                <Image HorizontalOptions="Start">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            Glyph="{Binding Status, Converter={StaticResource SynchronizationLoadingConverter}, Mode=TwoWay}"
+                                            Size="30"
+                                            Color="{StaticResource AccentColor}" />
+                                    </Image.Source>
+                                </Image>
+                                <Label Style="{StaticResource SynchronizationLabelStyle}" Text="{Binding Text}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+            </ScrollView>
+
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button
+                    Margin="0,12,0,0"
+                    mvx:La.ng="Text SyncFinished, FallbackValue=SyncFinished"
+                    Command="{Binding OkCommand}"
+                    AutomationId="btnSync"
+                    IsVisible="{Binding IsOkVisible, Mode=TwoWay}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

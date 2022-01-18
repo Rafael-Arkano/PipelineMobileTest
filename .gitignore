@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Mobile Template/v16
+/MobileTemplate.Core/bin/Debug/netstandard2.0
+/MobileTemplate.Core/obj
+/MobileTemplate.Droid/.vs/MobileTemplate.Droid/v16
+/MobileTemplate.Droid/bin/Debug
+/MobileTemplate.Droid/obj
+/MobileTemplate.iOS/obj
+/MobileTemplate.Models/bin/Debug/netstandard2.0
+/MobileTemplate.Models/obj
+/MobileTemplate.iOS/bin/iPhone/Debug
+/.vs/Mobile Template/config
+/MobileTemplate.Service.DataAccess/bin/Debug/netstandard2.0
+/MobileTemplate.Service.DataAccess/obj
+/MobileTemplate.DataAccess/bin
+/MobileTemplate.DataAccess/obj
+/MobileTemplate.Models/bin/Release/netstandard2.0
+/MobileTemplate.Core/bin/Release/netstandard2.0
+/MobileTemplate.Droid/bin/Release
+/.vs
+/MobileTemplate.UITests/bin/Debug
+/MobileTemplate.UITests/obj

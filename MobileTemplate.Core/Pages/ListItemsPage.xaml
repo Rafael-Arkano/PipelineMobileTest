@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.ListItemsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MobileTemplate.Models;assembly=MobileTemplate.Models"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    mvx:La.ng="Title LIstItems, FallbackValue=LIstItems"
+    x:DataType="viewModels:ListItemsViewModel"
+    x:TypeArguments="viewModels:ListItemsViewModel">
+
+
+    <views:MvxContentPage.IconImageSource>
+        <FontImageSource FontFamily="{StaticResource MaterialFontFamily}" Glyph="{StaticResource IconList}" />
+    </views:MvxContentPage.IconImageSource>
+
+    <Grid Padding="12" RowDefinitions="auto, *">
+
+        <Entry
+            Grid.Row="0"
+            mvx:La.ng="Placeholder Search, FallbackValue=Search"
+            ClearButtonVisibility="WhileEditing"
+            MaxLength="50"
+            ReturnType="Search"
+            Text="{Binding FilterText, Mode=TwoWay}" />
+
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="1"
+                    VerticalItemSpacing="0" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Item">
+                    <Grid
+                        ColumnDefinitions="48, *, 24"
+                        HeightRequest="64"
+                        RowDefinitions="24, 24, 1">
+
+                        <xct:AvatarView
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Margin="0,8,0,0"
+                            BorderColor="White"
+                            FontSize="Medium"
+                            Size="42"
+                            Text="{Binding ItemId}"
+                            TextColor="White"
+                            Color="{StaticResource DarkAccentColor}" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Text="{Binding Title}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding Description}" />
+
+                        <Image
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="2">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    Glyph="{StaticResource IconChevronRight}"
+                                    Size="48"
+                                    Color="Gray" />
+                            </Image.Source>
+                        </Image>
+
+                        <BoxView
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Style="{StaticResource SeparatorStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label
+                        mvx:La.ng="Text ResultsNotFound, FallbackValue=ResultsNotFound"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+
+</views:MvxContentPage>

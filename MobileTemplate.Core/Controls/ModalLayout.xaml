@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="MobileTemplate.Controls.ModalLayout"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Gray"
+                Opacity="0.7">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout
+                x:Name="ModalLayoutHeight"
+                Margin="24,0,24,0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#FFFFFF"
+                Opacity="1.0"
+                Orientation="Vertical"
+                VerticalOptions="CenterAndExpand">
+                <StackLayout
+                    x:Name="ContentPanel"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView x:Name="ViewContent" VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

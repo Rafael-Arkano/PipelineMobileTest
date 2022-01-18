@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="accentColor">#3949ab</color>
+  <color name="darkAccentColor">#00227b</color>
+  <color name="lightkAccentColor">#6f74dd</color>  
+  <color name="backgroundColor">#F1F1F1</color>
+  <color name="dialogBackgroundColor">#F1F1F1</color>
+  <color name="splashBackgroundColor">#F1F1F1</color>
+  <color name="statusBarColor">#00227b</color>  
+  <color name="navigationBarColor">#00227b</color>  
+</resources>

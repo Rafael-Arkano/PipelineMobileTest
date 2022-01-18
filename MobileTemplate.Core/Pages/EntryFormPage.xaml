@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.EntryFormPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    mvx:La.ng="Title EntryForm, FallbackValue=EntryForm"
+    x:TypeArguments="viewModels:EntryFormViewModel">
+
+    <StackLayout
+        Padding="12"
+        Spacing="0"
+        VerticalOptions="FillAndExpand">
+
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Text Entry" />
+        <Entry />
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Decimal Entry" />
+        <Entry Keyboard="Numeric">
+            <Entry.Behaviors>
+                <xct:NumericValidationBehavior
+                    MaximumDecimalPlaces="2"
+                    MaximumValue="100"
+                    MinimumValue="1.0" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Numeric Entry" />
+        <Entry />
+
+        <Label
+            Margin="4,0,0,0"
+            Style="{StaticResource FormLabelStyle}"
+            Text="Combo box" />
+        <Picker />
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Date picker" />
+        <DatePicker />
+
+        <Label Style="{StaticResource FormLabelStyle}" Text="Time picker" />
+        <TimePicker />
+
+    </StackLayout>
+</views:MvxContentPage>

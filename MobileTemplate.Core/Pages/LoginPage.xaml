@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    mvx:La.ng="Title AppTitle, FallbackValue=AppTitle"
+    x:TypeArguments="viewModels:LoginViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}">
+
+    <StackLayout
+        Margin="24,0,24,24"
+        Spacing="0"
+        VerticalOptions="Center">
+
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+            <Image Source="logo" />
+        </StackLayout>
+
+
+        <StackLayout Margin="0,12,0,0" HeightRequest="32">
+            <ActivityIndicator
+                HeightRequest="32"
+                IsRunning="True"
+                IsVisible="{Binding IsBusy}"
+                Style="{StaticResource ActivityIndicatorStyle}"
+                WidthRequest="32"
+                Color="{StaticResource AccentColor}" />
+        </StackLayout>
+
+        <StackLayout Margin="0,0,0,0" Spacing="0">
+            <Label Margin="4,0,0,0" mvx:La.ng="Text Username, FallbackValue=Username" />
+            <Entry
+                mvx:La.ng="Placeholder Username, FallbackValue=Username"
+                AutomationId="userNameEntry"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding IsEnabled}"
+                MaxLength="25"
+                Text="{Binding Username}" />
+        </StackLayout>
+
+        <StackLayout Margin="0,12,0,0" Spacing="0">
+            <Label Margin="4,0,0,0" mvx:La.ng="Text Password, FallbackValue=Password" />
+            <Entry
+                mvx:La.ng="Placeholder Password, FallbackValue=Password"
+                AutomationId="passwordEntry"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding IsEnabled}"
+                IsPassword="true"
+                MaxLength="50"
+                Text="{Binding Password}" />
+        </StackLayout>
+
+        <Button
+            Margin="0,12,0,0"
+            mvx:La.ng="Text Login, FallbackValue=Login"
+            AutomationId="btnLogin"
+            Command="{Binding LoginCommand}"
+            Style="{StaticResource PrimaryButtonStyle}" />
+
+
+        <Button
+            Margin="0,6,0,0"
+            mvx:La.ng="Text LoginWithActiveDirectory, FallbackValue=LoginWithActiveDirectory"
+            AutomationId="btnLoginAd"
+            Command="{Binding LoginWithActiveDirectoryCommand}"
+            Style="{StaticResource PrimaryButtonStyle}" />
+    </StackLayout>
+</views:MvxContentPage>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="MobileTemplate.Core.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="AccentColor">#3949ab</Color>
+            <Color x:Key="DarkAccentColor">#00227b</Color>
+            <Color x:Key="LightAccentColor">#6f74dd</Color>
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="SystemGray">#8E8E93</Color>
+            <Color x:Key="BackgroundColor">#F0EFF4</Color>
+            <Color x:Key="BlackColor">Black</Color>
+            <Color x:Key="TextColor">#000000</Color>
+            <Color x:Key="BarBackground">#ffffff</Color>
+            <Color x:Key="BarBackgroundColor">#3949ab</Color>
+            <Color x:Key="BarTextColor">#ffffff</Color>
+            <Color x:Key="BarIconColor">#ffffff</Color>
+
+            <OnPlatform
+                x:Key="FontLarge"
+                x:TypeArguments="x:Double"
+                Android="20"
+                iOS="18" />
+            <OnPlatform
+                x:Key="FontMedium"
+                x:TypeArguments="x:Double"
+                Android="16"
+                iOS="16" />
+            <OnPlatform
+                x:Key="FontSmall"
+                x:TypeArguments="x:Double"
+                Android="14"
+                iOS="12" />
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="BarTextColor" Value="#FFFFFF" />
+            </Style>
+
+            <!--  Icons  -->
+            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+                <On Platform="UWP" Value="Assets/Fonts/materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>
+
+            <x:String x:Key="IconPlayCircleOutline">&#xf05a;</x:String>
+            <x:String x:Key="IconPlay">&#xf40a;</x:String>
+            <x:String x:Key="IconPause">&#xf3e4;</x:String>
+            <x:String x:Key="IconDownload">&#xf1da;</x:String>
+            <x:String x:Key="IconUpNext">&#xfb8d;</x:String>
+            <x:String x:Key="IconMarkPlayed">&#xf134;</x:String>
+            <x:String x:Key="IconArchived">&#xf03c;</x:String>
+            <x:String x:Key="IconShare">&#xf497;</x:String>
+
+            <x:String x:Key="IconHome">&#xf40a;</x:String>
+            <x:String x:Key="IconAbout">&#xf2fd;</x:String>
+            <x:String x:Key="IconTwitter">&#xf544;</x:String>
+            <x:String x:Key="IconMedia">&#xf40b;</x:String>
+            <x:String x:Key="IconSettings">&#xf8ba;</x:String>
+            <x:String x:Key="IconBlog">&#xf46b;</x:String>
+            <x:String x:Key="IconList">&#xf572;</x:String>
+            <x:String x:Key="IconClose">&#xf156;</x:String>
+            <x:String x:Key="IconChevronLeft">&#xf141;</x:String>
+            <x:String x:Key="IconChevronRight">&#xf142;</x:String>
+
+            <Style x:Key="SynchronizationLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="MaxLines" Value="1" />
+            </Style>
+
+
+            <Style x:Key="ActivityIndicatorStyle" TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{StaticResource AccentColor}" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Scale">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="1" />
+                        <On Platform="iOS" Value="1.5" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            </Style>
+
+            <Style x:Key="FormLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="4,0,0,0" />
+                <Setter Property="TextColor" Value="{StaticResource SystemGray}" />
+            </Style>
+
+            <Style x:Key="RegularLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="4,0,0,0" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            <Style x:Key="MenuLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource DarkAccentColor}" />
+            </Style>
+
+
+            <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="Color" Value="LightGray" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

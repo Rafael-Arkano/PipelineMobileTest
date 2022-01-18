@@ -1,0 +1,36 @@
+<resources>
+
+  <style name="AppTheme" parent="AppTheme.Base">
+  </style>
+
+  <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">#FFFFFF</item>
+    <item name="colorPrimaryDark">@color/darkAccentColor</item>
+    <item name="colorAccent">@color/accentColor</item>
+    <item name="android:windowBackground">@color/backgroundColor</item>
+    <item name="android:navigationBarColor">@color/darkAccentColor</item>
+    <item name="colorControlActivated">@color/accentColor</item>
+    <item name="colorControlHighlight">@color/accentColor</item>
+    <item name="colorSwitchThumbNormal">@color/accentColor</item>
+    <item name="android:colorPressedHighlight">@color/darkAccentColor</item>
+    <item name="android:colorLongPressedHighlight">@color/darkAccentColor</item>
+    <item name="android:colorFocusedHighlight">@color/darkAccentColor</item>
+    <item name="android:colorActivatedHighlight">@android:color/transparent</item>
+    <item name="android:activatedBackgroundIndicator">@color/darkAccentColor</item>
+    <item name="android:statusBarColor">@color/statusBarColor</item>
+    <item name="android:navigationBarColor">@color/navigationBarColor</item>
+    <item name="colorControlNormal">@color/accentColor</item>
+    <item name="colorControlHighlight">@color/accentColor</item>
+    <item name="android:alertDialogTheme">@style/dialog</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:windowLightNavigationBar">false</item>
+  </style>
+
+  <!--Style for the aler dialogs-->
+  <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="colorAccent">@color/accentColor</item>
+    <item name="android:textColorPrimary">@color/accentColor</item>
+    <item name="android:background">@color/dialogBackgroundColor</item>
+  </style>
+  
+</resources>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.FirstPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    mvx:La.ng="Title AppTitle, FallbackValue=AppTitle"
+    x:TypeArguments="viewModels:FirstViewModel">
+
+    <StackLayout>
+        <Label Text="Hello World" />
+        <Label FontFamily="Lobster" Text="Hello Forms with Lobster Font" />
+        <Label FontSize="24" Text="Font size 24" />
+        <Label FontSize="Large" Text="Large font size" />
+        <Label FontAttributes="Italic" Text="Italics" />
+        <Label FontAttributes="Bold, Italic" Text="Bold and italics" />
+
+        <Image BackgroundColor="#D1D1D1">
+            <Image.Source>
+                <FontImageSource
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Glyph="{StaticResource IconMedia}"
+                    Size="44" />
+            </Image.Source>
+        </Image>
+
+        <Image BackgroundColor="#D1D1D1">
+            <Image.Source>
+                <FontImageSource
+                    FontFamily="{OnPlatform iOS=materialdesignicons-webfont,
+                                            Android=materialdesignicons-webfont.ttf#}"
+                    Glyph="&#xf038;"
+                    Size="44" />
+            </Image.Source>
+        </Image>
+
+        <Button
+            Margin="0"
+            BackgroundColor="Gray"
+            BorderWidth="1"
+            Command="{Binding MessageCommand}"
+            CornerRadius="20"
+            HeightRequest="40"
+            Text="Lanzar NS"
+            TextColor="{StaticResource AccentColor}"
+            WidthRequest="100" />
+    </StackLayout>
+</views:MvxContentPage>

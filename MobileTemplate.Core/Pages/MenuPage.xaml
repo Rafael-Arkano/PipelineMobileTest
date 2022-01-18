@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage
+    x:Class="MobileTemplate.Core.Pages.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MobileTemplate.Core.ViewModels;assembly=MobileTemplate.Core"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    Title="Menu">
+
+    <StackLayout
+        BackgroundColor="LightGray"
+        HorizontalOptions="FillAndExpand"
+        Spacing="0"
+        VerticalOptions="FillAndExpand">
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,0,1,0" />
+                    <On Platform="Android" Value="0,0,0,0" />
+                </OnPlatform>
+            </StackLayout.Margin>
+            <Grid BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="132" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--<StackLayout
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <StackLayout.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="20,24,20,0" />
+                                <On Platform="Android" Value="20,16,20,0" />
+                            </OnPlatform>
+                        </StackLayout.Margin>
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                                HeightRequest="48"
+                                Source="UserProfile.png"
+                                WidthRequest="48" />
+                            <StackLayout
+                                Margin="4,0,0,0"
+                                HorizontalOptions="StartAndExpand"
+                                Orientation="Vertical"
+                                Spacing="0"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Margin="0,4,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource MediumFontLabelStyle}"
+                                    Text="{Binding User.Name}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0,2,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource MediumFontLabelStyle}"
+                                    Text="{Binding User.VendorName}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout
+                            Margin="0,0,0,0"
+                            Orientation="Horizontal"
+                            VerticalOptions="CenterAndExpand">
+                            <StackLayout
+                                HorizontalOptions="StartAndExpand"
+                                Orientation="Vertical"
+                                Spacing="0"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Margin="0,12,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource MediumFontLabelStyle}"
+                                    Text="{Binding User.Email}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0,2,0,0"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource MediumFontLabelStyle}"
+                                    Text="{Binding User.Username}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>-->
+
+
+                <!--<ListView
+                    Grid.Row="1"
+                    ItemTapped="ItemTapped"
+                    ItemsSource="{Binding Menu}"
+                    RowHeight="48"
+                    SelectedItem="{Binding SelectedOption, Mode=TwoWay}"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="12" Orientation="Horizontal">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource
+                                                FontFamily="{StaticResource MaterialFontFamily}"
+                                                Glyph="{Binding Icon}"
+                                                Size="50"
+                                                Color="{StaticResource AccentColor}" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                        <Label Style="{StaticResource MenuLabelStyle}" Text="{Binding Description}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</views:MvxContentPage>
