@@ -1,87 +1,57 @@
-trigger:
-  branches:
-    include:
-      - testing
-      - staging
-      - main
-      - release/*
+jobs:
 
-pool:
-  vmImage: 'windows-latest'
+- job: Android
+  pool:
+    vmImage: 'windows-latest'
 
-variables:
-  buildConfiguration: Release  
-  keystoreFile: 'Template Mobile Application.keystore'
-  keystoreAlias: 'Template Mobile Application'
-  keystorePassword: ''
-  buildNumber: $[format('{0:yyyyMMdd}', pipeline.startTime)]
-  
-  ${{ if eq(variables['Build.SourceBranchName'], 'develop' ) }}: 
-    packageName: 'com.companyname.mobiletemplate.dev'
-    environment: 'develop'
-  
-  ${{ if eq(variables['Build.SourceBranchName'], 'testing' ) }}: 
-    packageName: 'com.companyname.mobiletemplate.test'
-    environment: 'testing'
+  variables:
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
-  ${{ if eq(variables['Build.SourceBranchName'], 'staging' ) }}: 
-    packageName: 'com.companyname.mobiletemplate.staging'
-    environment: 'staging'
-   
-  ${{ if eq(variables['Build.SourceBranchName'], 'main' ) }}: 
-    packageName: 'com.companyname.mobiletemplate'
-    environment: 'production'
+  steps:
+  - task: NuGetToolInstaller@1
 
-stages:
-  - stage: Build
-    jobs:
-    - job: Build
-      displayName: 'Build Xamarin App'
-      steps:
-      - task: NuGetToolInstaller@1
-        displayName: 'Install Nuget'
-      
-      - task: NuGetCommand@2
-        displayName: 'Restore Nuget'
-        inputs:
-          restoreSolution: '**/*.sln'
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
 
-      - task: ShellScript@2
-        inputs:
-          scriptPath: PreBuildScripts/android-pre-build.sh          
-          args: $(environment) $(buildNumber)
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: '**/*droid*.csproj'
+      outputDirectory: '$(outputDirectory)'
+      configuration: '$(buildConfiguration)'
+      msbuildVersionOption: '16.0'
 
-      # - task: VSBuild@1
-      #   displayName: 'Build mobile solution'
-      #   inputs:
-      #     solution: 'MobileTemplate.sln'
+  - task: AndroidSigning@3
+    inputs:
+      apksign: false
+      zipalign: false
+      apkFiles: '$(outputDirectory)/*.apk'
 
-      - task: XamarinAndroid@1
-        displayName: 'Build Android project'
-        inputs:
-          projectFile: 'MobileTemplate.Droid/MobileTemplate.Droid.csproj'
-          configuration: 'Release'
-          msbuildVersionOption: 'latest'
-          jdkOption: 'JDKVersion'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(outputDirectory)'
 
-      - task: DownloadSecureFile@1
-        displayName: 'Download keystore'
-        name: 'keystore'
-        inputs:
-            secureFile: $(keystoreFile)
+- job: iOS
+  pool:
+    vmImage: 'macOS-latest'
 
-      - task: AndroidSigning@3
-        displayName: 'Sign Apk package'
-        inputs:
-          apkFiles: 'MobileTemplate.Droid/bin/$(buildConfiguration)/$(packageName).apk'
-          apksignerKeystoreFile: $(keystoreFile)
-          apksignerKeystorePassword: $(keystorePassword)
-          apksignerKeystoreAlias: $(keystoreAlias)
-          apksignerKeyPassword: $(keystorePassword)
+  steps:
+  # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+  # https://go.microsoft.com/fwlink/?linkid=871629
+  - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_7 
+    displayName: 'Select Xamarin SDK version'
+    enabled: false
 
-      - task: PublishPipelineArtifact@1
-        displayName: 'Publish artifact'
-        inputs:
-          targetPath: '$(System.DefaultWorkingDirectory)/MobileTemplate.Droid/bin/$(buildConfiguration)/'
-          artifact: 'android'
-          publishLocation: 'pipeline'
+  - task: NuGetToolInstaller@1
+
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '**/*.sln'
+
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*.sln'
+      configuration: 'Release'
+      buildForSimulator: true
+      packageApp: false
