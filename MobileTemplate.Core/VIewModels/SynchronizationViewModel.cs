@@ -1,5 +1,6 @@
 ﻿namespace MobileTemplate.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
     using MobileTemplate.Core.Messages;
     using MobileTemplate.Core.Models;
     using MvvmCross.Commands;
@@ -96,7 +97,7 @@
         /// <summary>
         /// Gets by DI the required services
         /// </summary>
-        public SynchronizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SynchronizationViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             SubscribeToSynchronizationMessages();
         }

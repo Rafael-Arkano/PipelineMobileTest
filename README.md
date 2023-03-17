@@ -1,20 +1,20 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Template para Aplicaciones Móviles con Xamarin Forms
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+El Template de este repositorio es una aplicación base funcional para Android y iOS que cubre la mayoría de la funcionalidad que típica de los proyectos en Arkano siguiendo las mejores practicas y recomendaciones hasta el momento.
+ 
+El template incluye:
+- Scripts de prebuild para AppCenter
+- SQLlite para almacenar datos locales (offline)
+- Control de ventana modal (Modal Layout)
+- Actualizado para utilizar AndroidX
+- Xamarin Essentials
+- Xamarin Community Tookit
+- Soporte de FontIcons (con helper de constantes)
+- Flujo básico de aplicación (inicio de sesión, sincronizaron de datos, pantalla principal)
+- Estilo consistente y personalizable
+- Log de errores de AppCenter con MvvmCross
+- Separación de capa de datos del servicio http
+- Servicio de autenticacion (por el momento usuario / contraseña, a futuro soporte de AD)
+- Template de UI para sincronizaron de datos
+- Template de UI para lista de elementos con buscador
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)

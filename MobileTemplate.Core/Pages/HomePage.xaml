@@ -22,13 +22,13 @@
 
             <StackLayout Orientation="Horizontal">
 
-                <xct:AvatarView
+                <!--<xct:AvatarView
                     BorderColor="White"
                     FontSize="Medium"
                     Size="48"
                     Text="RB"
                     TextColor="White"
-                    Color="{StaticResource DarkAccentColor}" />
+                    Color="{StaticResource DarkAccentColor}" />-->
 
                 <StackLayout
                     HorizontalOptions="Center"

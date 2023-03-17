@@ -1,6 +1,7 @@
 ﻿namespace MobileTemplate.Core.ViewModels
 {
     using Interfaces;
+    using Microsoft.Extensions.Logging;
     using MvvmCross;
     using MvvmCross.Localization;
     using MvvmCross.Logging;
@@ -150,7 +151,7 @@
         /// </summary>
         /// <param name="logProvider"></param>
         /// <param name="navigationService"></param>
-        protected BaseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected BaseViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.isBusy = false;
             this.DataService = Mvx.IoCProvider.GetSingleton<IDataService>();
@@ -225,7 +226,7 @@
     /// </summary>
     public abstract class BaseViewModel<TParameter> : BaseViewModel, IMvxViewModel<TParameter> where TParameter : class
     {
-        protected BaseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected BaseViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
 
@@ -243,7 +244,7 @@
         where TParameter : class
         where TResult : class
     {
-        protected BaseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected BaseViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
 
@@ -262,7 +263,7 @@
     public abstract class BaseViewModelResult<TResult> : BaseViewModel, IMvxViewModelResult<TResult>
         where TResult : class
     {
-        protected BaseViewModelResult(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected BaseViewModelResult(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
 

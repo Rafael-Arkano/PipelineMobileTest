@@ -20,14 +20,14 @@
         <Entry />
 
         <Label Style="{StaticResource FormLabelStyle}" Text="Decimal Entry" />
-        <Entry Keyboard="Numeric">
+        <!--<Entry Keyboard="Numeric">
             <Entry.Behaviors>
                 <xct:NumericValidationBehavior
                     MaximumDecimalPlaces="2"
                     MaximumValue="100"
                     MinimumValue="1.0" />
             </Entry.Behaviors>
-        </Entry>
+        </Entry>-->
 
         <Label Style="{StaticResource FormLabelStyle}" Text="Numeric Entry" />
         <Entry />

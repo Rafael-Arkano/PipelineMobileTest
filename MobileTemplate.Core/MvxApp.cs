@@ -1,14 +1,14 @@
-﻿namespace MobileTemplate.Core
+﻿using MvvmCross.IoC;
+using MvvmCross.ViewModels;
+using System.Globalization;
+using MobileTemplate.Core.ViewModels;
+using MobileTemplate.Core.Services;
+using MvvmCross;
+using MvvmCross.Plugin.JsonLocalization;
+using Microsoft.Extensions.Logging;
+
+namespace MobileTemplate.Core
 {
-    using MvvmCross.IoC;
-    using MvvmCross.ViewModels;
-    using System.Globalization;
-    using ViewModels;
-    using Services;
-    using MvvmCross;
-    using MvvmCross.Plugin.JsonLocalization;
-
-
     /// <summary>
     /// MvvmCross Application
     /// </summary>
@@ -40,6 +40,6 @@
             Mvx.IoCProvider.RegisterSingleton<IMvxTextProviderBuilder>(builder);
             Mvx.IoCProvider.RegisterSingleton(builder.TextProvider);
         }
-
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿namespace MobileTemplate.Core.ViewModels
 {
+    using Microsoft.Extensions.Logging;
     using MvvmCross.Logging;
     using MvvmCross.Navigation;
 
@@ -11,7 +12,7 @@
         /// <summary>
         /// Gets by DI the required services
         /// </summary>
-        public StartUpViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public StartUpViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
     }

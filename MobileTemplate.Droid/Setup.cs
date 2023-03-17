@@ -2,26 +2,19 @@
 {
     using Core;
     using MvvmCross.Forms.Platforms.Android.Core;
-    using MvvmCross.Logging;
     using MvvmCross;
     using MvvmCross.Forms.Presenters;
     using Core.Interfaces;
     using Services;
+    using MvvmCross.IoC;
     using MobileTemplate.Core.Logger;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Android setup class
     /// </summary>
     public class Setup : MvxFormsAndroidSetup<MvxApp, App>
     {
-        /// <summary>
-        /// Sets the log provider
-        /// </summary>
-        /// <returns></returns>
-        public override MvxLogProviderType GetDefaultLogProviderType()
-            => MvxLogProviderType.Console;
-
-
         /// <summary>
         /// Register the form presenter (MvvmCross)
         /// </summary>        
@@ -36,10 +29,10 @@
         /// <summary>
         /// Initializes the platform services
         /// </summary>
-        protected override void InitializeFirstChance()
+        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
         {
-            Mvx.IoCProvider.RegisterSingleton<IPlatformService>(new PlatformService());
-            base.InitializeFirstChance();
+            iocProvider.RegisterSingleton<IPlatformService>(new PlatformService());
+            base.InitializeFirstChance(iocProvider);
         }
 
 
@@ -47,9 +40,21 @@
         /// Setups the LogProvider
         /// </summary>
         /// <returns></returns>
-        protected override IMvxLogProvider CreateLogProvider()
+        protected override ILoggerProvider CreateLogProvider()
         {
-            return new AppCenterLogProvider();
+            return new LoggerProvider();
         }
+
+
+        /// <summary>
+        /// Creates the logger to use
+        /// </summary>
+        /// <returns></returns>
+        protected override ILoggerFactory CreateLogFactory()
+        {
+            return new Core.Logger.LoggerFactory();
+        }
+
+
     }
 }

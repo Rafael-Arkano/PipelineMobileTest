@@ -1,0 +1,87 @@
+trigger:
+  branches:
+    include:
+      - testing
+      - staging
+      - main
+      - release/*
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: Release  
+  keystoreFile: 'Template Mobile Application.keystore'
+  keystoreAlias: 'Template Mobile Application'
+  keystorePassword: ''
+  buildNumber: $[format('{0:yyyyMMdd}', pipeline.startTime)]
+  
+  ${{ if eq(variables['Build.SourceBranchName'], 'develop' ) }}: 
+    packageName: 'com.companyname.mobiletemplate.dev'
+    environment: 'develop'
+  
+  ${{ if eq(variables['Build.SourceBranchName'], 'testing' ) }}: 
+    packageName: 'com.companyname.mobiletemplate.test'
+    environment: 'testing'
+
+  ${{ if eq(variables['Build.SourceBranchName'], 'staging' ) }}: 
+    packageName: 'com.companyname.mobiletemplate.staging'
+    environment: 'staging'
+   
+  ${{ if eq(variables['Build.SourceBranchName'], 'main' ) }}: 
+    packageName: 'com.companyname.mobiletemplate'
+    environment: 'production'
+
+stages:
+  - stage: Build
+    jobs:
+    - job: Build
+      displayName: 'Build Xamarin App'
+      steps:
+      - task: NuGetToolInstaller@1
+        displayName: 'Install Nuget'
+      
+      - task: NuGetCommand@2
+        displayName: 'Restore Nuget'
+        inputs:
+          restoreSolution: '**/*.sln'
+
+      - task: ShellScript@2
+        inputs:
+          scriptPath: PreBuildScripts/android-pre-build.sh          
+          args: $(environment) $(buildNumber)
+
+      # - task: VSBuild@1
+      #   displayName: 'Build mobile solution'
+      #   inputs:
+      #     solution: 'MobileTemplate.sln'
+
+      - task: XamarinAndroid@1
+        displayName: 'Build Android project'
+        inputs:
+          projectFile: 'MobileTemplate.Droid/MobileTemplate.Droid.csproj'
+          configuration: 'Release'
+          msbuildVersionOption: 'latest'
+          jdkOption: 'JDKVersion'
+
+      - task: DownloadSecureFile@1
+        displayName: 'Download keystore'
+        name: 'keystore'
+        inputs:
+            secureFile: $(keystoreFile)
+
+      - task: AndroidSigning@3
+        displayName: 'Sign Apk package'
+        inputs:
+          apkFiles: 'MobileTemplate.Droid/bin/$(buildConfiguration)/$(packageName).apk'
+          apksignerKeystoreFile: $(keystoreFile)
+          apksignerKeystorePassword: $(keystorePassword)
+          apksignerKeystoreAlias: $(keystoreAlias)
+          apksignerKeyPassword: $(keystorePassword)
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish artifact'
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/MobileTemplate.Droid/bin/$(buildConfiguration)/'
+          artifact: 'android'
+          publishLocation: 'pipeline'

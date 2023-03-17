@@ -75,7 +75,7 @@
             // var synchronizationData = GetSynchronizationData(database);
             //  var isFirstSynchronization = synchronizationData == null;
 
-            var logger = Mvx.IoCProvider.GetSingleton<IMvxLog>();
+            //var logger = Mvx.IoCProvider.GetSingleton<IMvxLog>();
             try
             {
                 IMvxMessenger messenger = null;
@@ -95,9 +95,9 @@
                         messenger?.Publish(new SynchronizationMessage(messageSender, syncElementsProgressStart, SyncLoadingStatus.Loading));
                         await Task.Delay(2000);
                     }
-                    catch (Exception ex)
+                    catch// (Exception ex)
                     {
-                        logger?.Error(ex, ex.Message);
+                       // logger?.Error(ex, ex.Message);
                         success = false;
                     }
                     finally
@@ -121,7 +121,7 @@
             }
             catch (Exception ex)
             {
-                logger?.Error(ex, ex.Message);
+               // logger?.Error(ex, ex.Message);
                 throw new Exception(ex.Message);
             }
 
