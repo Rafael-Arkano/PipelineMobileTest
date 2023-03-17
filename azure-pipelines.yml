@@ -32,6 +32,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(outputDirectory)'
+
   - task: AppCenterDistribute@3
     inputs:
       serverEndpoint: 'AppCenterTest'
@@ -66,3 +67,14 @@ jobs:
 #      configuration: 'Release'
 #      buildForSimulator: true
 #      packageApp: false
+
+#  - task: AppCenterDistribute@3
+#    inputs:
+#      serverEndpoint: 'AppCenterTest'
+#      appSlug: 'ArkanoSoftware/Template-Mobile-Application-1'
+#      appFile: '$(outputDirectory)/*.ipa'
+#      symbolsOption: 'Apple'
+#      releaseNotesOption: 'input'
+#      releaseNotesInput: 'Nota de lanzamiento test'
+#      destinationType: 'groups'
+#      distributionGroupId: 'Test'
