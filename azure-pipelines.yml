@@ -7,6 +7,7 @@ jobs:
   variables:
     buildConfiguration: 'Release'
     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+    packageName: 'com.companyname.mobiletemplate.dev'
 
   steps:
   - task: NuGetToolInstaller@1
@@ -35,7 +36,7 @@ jobs:
     inputs:
       serverEndpoint: 'AppCenterTest'
       appSlug: 'ArkanoSoftware/Template-Mobile-Application-1'
-      appFile: './MobileTemplate.Droid/bin/Release/com.companyname.mobiletemplate.dev-Signed.apk'
+      appFile: 'MobileTemplate.Droid/bin/$(buildConfiguration)/$(packageName).apk'
       symbolsOption: 'Android'
       releaseNotesOption: 'input'
       releaseNotesInput: 'Nota de lanzamiento test'
