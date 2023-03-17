@@ -31,6 +31,16 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(outputDirectory)'
+  - task: AppCenterDistribute@3
+    inputs:
+      serverEndpoint: 'AppCenterTest'
+      appSlug: 'ArkanoSoftware/Template-Mobile-Application-1'
+      appFile: './MobileTemplate.Droid/bin/Release/com.companyname.mobiletemplate.dev-Signed.apk'
+      symbolsOption: 'Android'
+      releaseNotesOption: 'input'
+      releaseNotesInput: 'Nota de lanzamiento test'
+      destinationType: 'groups'
+      distributionGroupId: 'Test'
 
 - job: iOS
   pool:
