@@ -29,6 +29,8 @@ jobs:
       apksignerKeystoreAlias: 'TestMobile'
       apksignerKeyPassword: 'TestMobile'
       zipalign: false
+      apksignerKeystoreFile: 'TestMobile'
+      apksignerKeystorePassword: 'TestMobile'
       apkFiles: '$(outputDirectory)/*.apk'
 
   - task: PublishBuildArtifacts@1
