@@ -35,7 +35,7 @@ jobs:
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
-      apksignerKeystoreFile: $(keystoreFile)
+      apksignerKeystoreFile: 'TestMobile.keystore'
       apksignerKeystorePassword: $(keystorePassword)
       apksignerKeystoreAlias: $(keystoreAlias)
       apksignerKeyPassword: $(keystorePassword)
