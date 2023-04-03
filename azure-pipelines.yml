@@ -25,13 +25,11 @@ jobs:
 
   - task: AndroidSigning@3
     inputs:
-      apksign: true
-      apksignerKeystoreAlias: 'TestMobile'
-      apksignerKeyPassword: 'TestMobile'
-      zipalign: false
+      apkFiles: '$(outputDirectory)/*.apk'
       apksignerKeystoreFile: 'TestMobile'
       apksignerKeystorePassword: 'TestMobile'
-      apkFiles: '$(outputDirectory)/*.apk'
+      apksignerKeystoreAlias: 'TestMobile'
+      apksignerKeyPassword: 'TestMobile'
 
   - task: PublishBuildArtifacts@1
     inputs:
