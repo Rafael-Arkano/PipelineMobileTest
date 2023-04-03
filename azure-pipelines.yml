@@ -30,7 +30,7 @@ jobs:
     displayName: 'Download keystore'
     name: 'TestMobile'
     inputs:
-      secureFile: TestMobile.keystore
+      secureFile: 'TestMobile.keystore'
 
   - task: AndroidSigning@3
     inputs:
