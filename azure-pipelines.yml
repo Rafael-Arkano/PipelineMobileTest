@@ -8,6 +8,8 @@ jobs:
     buildConfiguration: 'Release'
     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
     keystoreFile: 'TestMobile.keystore'
+    keystoreAlias: 'TestMobile'
+    keystorePassword: 'TestMobile'
     packageName: 'com.companyname.mobiletemplate.dev'
 
   steps:
@@ -34,9 +36,9 @@ jobs:
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
       apksignerKeystoreFile: $(keystoreFile)
-      apksignerKeystorePassword: 'TestMobile'
-      apksignerKeystoreAlias: 'TestMobile'
-      apksignerKeyPassword: 'TestMobile'
+      apksignerKeystorePassword: $(keystorePassword)
+      apksignerKeystoreAlias: $(keystoreAlias)
+      apksignerKeyPassword: $(keystorePassword)
 
   - task: PublishBuildArtifacts@1
     inputs:
