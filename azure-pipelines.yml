@@ -7,6 +7,7 @@ jobs:
   variables:
     buildConfiguration: 'Release'
     outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+    keystoreFile: 'TestMobile.keystore'
     packageName: 'com.companyname.mobiletemplate.dev'
 
   steps:
@@ -27,12 +28,12 @@ jobs:
     displayName: 'Download keystore'
     name: 'TestMobile'
     inputs:
-      secureFile: 'TestMobile'
+      secureFile: $(keystoreFile)
 
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
-      apksignerKeystoreFile: 'TestMobile'
+      apksignerKeystoreFile: $(keystoreFile)
       apksignerKeystorePassword: 'TestMobile'
       apksignerKeystoreAlias: 'TestMobile'
       apksignerKeyPassword: 'TestMobile'
