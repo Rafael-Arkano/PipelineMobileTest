@@ -23,6 +23,12 @@ jobs:
       configuration: '$(buildConfiguration)'
       msbuildVersionOption: '16.0'
 
+  - task: DownloadSecureFile@1
+    displayName: 'Download keystore'
+    name: 'TestMobile'
+    inputs:
+      secureFile: 'TestMobile'
+
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
