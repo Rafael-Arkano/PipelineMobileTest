@@ -25,7 +25,7 @@ jobs:
 
   - task: AndroidSigning@3
     inputs:
-      apksign: false
+      apksign: true
       zipalign: false
       apkFiles: '$(outputDirectory)/*.apk'
 
