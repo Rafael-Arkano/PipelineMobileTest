@@ -48,7 +48,7 @@ jobs:
     inputs:
       serverEndpoint: 'AppCenterTest'
       appSlug: 'ArkanoSoftware/Template-Mobile-Application-1'
-      appFile: '$(outputDirectory)/*.apk'
+      appFile: '$(outputDirectory)/*Signed.apk'
       symbolsOption: 'Android'
       releaseNotesOption: 'input'
       releaseNotesInput: 'Nota de lanzamiento test'
