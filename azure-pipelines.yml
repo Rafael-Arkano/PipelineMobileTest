@@ -51,9 +51,10 @@ jobs:
       appFile: '$(outputDirectory)/*.apk'
       symbolsOption: 'Android'
       releaseNotesOption: 'input'
-      releaseNotesInput: 'Nota de lanzamiento test'
+      releaseNotesInput: 'TEST NOTE'
       destinationType: 'groups'
       distributionGroupId: 'Test'
+    
 
 #- job: iOS
 #  pool:
