@@ -53,7 +53,6 @@ jobs:
       releaseNotesOption: 'input'
       releaseNotesInput: 'TEST NOTE'
       destinationType: 'groups'
-      distributionGroupId: 'Internal;'
     
 
 #- job: iOS
