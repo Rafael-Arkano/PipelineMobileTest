@@ -66,4 +66,4 @@ jobs:
 #        run: appcenter distribute release --silent --file ./MobileTemplate.iOS/bin/iPhone/Release/MobileTemplate.iOS.ipa --app ArkanoSoftware/Template-Mobile-Application-1 --group Test --token ${{ secrets.APPCENTER_TEST_API_TOKEN }}
           
       - name: Upload Android app to App Center
-        run: appcenter distribute release --silent --file ./MobileTemplate.Droid/bin/Release/com.companyname.mobiletemplate.dev-Signed.apk --app ArkanoSoftware/Template-Mobile-Application-1 --group Test --token ${{ secrets.APPCENTER_TEST_API_TOKEN }}
+        run: appcenter distribute release --silent --file ./MobileTemplate.Droid/bin/Release/com.companyname.mobiletemplate.dev-Signed.apk --app rafael.gomez-arkanosoft.com/mobile --group Collaborators --token ${{ secrets.TestMobileToken }}
